@@ -1,9 +1,9 @@
 ---
-name: ads-execution-make
+name: execution-ads-make
 description: Use this when the founder's ads money card exists and they need the ads themselves, or the weekly read called for new ads. They say "Make my ads." It reads what already runs in their market in the Meta Ad Library, makes 2 images and 1 short vertical clip with Higgsfield after a credit line and a yes, checks every word and every picture against squad/business.md, and saves the ads with the claims check in squad/ads/<date>/. It builds nothing in Meta and spends nothing on ads.
 ---
 
-# Ads Execution Make · Agent 11
+# execution-ads-make · Agent 11
 
 1 output: `squad/ads/<date>/`, the 3 ads and `ads.md` with their words, the market read and the
 claims check under each ad.
@@ -41,7 +41,7 @@ run starts a new folder; a finished folder already dated today makes the new one
 1. Open `references/the-account.md` and `references/the-numbers.md`. Any missing: stop and ask for
    the whole folder again.
 2. Read `squad/business.md`. No file, or no number on line 1 under `## PRICE`: stop with 1 line,
-   "Run Agent 1 first: /the-winning-offer."
+   "Run Agent 1 first: /execution-genesis-offer."
 3. THE SENTENCE sells credit, a job, housing, or a social issue, election or politics: 1 line,
    "Meta treats this as a special ad category. This agent does not build those." Stop.
 4. Read `squad/ads-money-card.md`. Missing: 1 line, "Run Agent 10 first: Set up my ads money." Stop.

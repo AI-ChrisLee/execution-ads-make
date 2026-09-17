@@ -1,4 +1,4 @@
-# Ads Execution Make · Agent 11
+# execution-ads-make · Agent 11
 
 This agent is a base. Once you have done it your way, tell your squad "update the agent to do it
 like this."
