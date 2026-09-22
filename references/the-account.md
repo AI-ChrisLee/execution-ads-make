@@ -14,13 +14,9 @@ The official Meta Ads connector is a custom connector, added in the Claude app:
 Then quit Claude Code and open it again in the same folder. Claude Code signed in with the same
 Claude account picks up the connector. No developer app, no key to paste.
 
-## 2. The account read, and the market read
+## 2. The market read
 
-`ads_get_ad_accounts` returns, per account, `is_ads_mcp_enabled`, `is_ads_mcp_disabled_reason`,
-`is_queryable` and `not_queryable_reason`. The card's account that is not both enabled and
-queryable is never used, and its reasons print exactly as Meta wrote them, with nothing added about
-why. Page more than 50 accounts with `cursor`. Send the same `client_conversation_id` on every Meta
-call in a run.
+Send the same `client_conversation_id` on every Meta call in a run.
 
 `ads_library_search` returns, per ad, the page name, the headline, the start date in UTC and the
 `ad_snapshot_url`, plus Meta's estimate of the total. It returns no body text, no picture, no spend
@@ -38,17 +34,7 @@ ad here spends credits.
 first. **Not signed in:** run `higgsfield auth login` yourself. It opens the browser; tell the
 founder to sign in there, then "type Make my ads. again".
 
-**Cost, before anything is made:**
-
-```
-higgsfield generate cost nano_banana_2 --prompt "<prompt>" --aspect_ratio 4:5
-higgsfield generate cost kling3_0 --prompt "<prompt>" --aspect_ratio 9:16 --duration 5 --sound off
-```
-
-Read 2026-09-16: 2 credits an image, 6.25 credits the clip, about 10 credits for the 3 ads. Always
-print the live number, never this one.
-
-**Make, after the yes:**
+**Make:**
 
 ```
 higgsfield generate create nano_banana_2 --prompt "<prompt>" --aspect_ratio 4:5 --wait

@@ -1,19 +1,17 @@
 ---
 name: execution-ads-make
-description: Use this when the founder's ads money card exists and they need the ads themselves, or the weekly read called for new ads. They say "Make my ads." It reads what already runs in their market in the Meta Ad Library, makes 2 images and 1 short vertical clip with Higgsfield after a credit line and a yes, checks every word and every picture against squad/business.md, and saves the ads with the claims check in squad/ads/<date>/. It builds nothing in Meta and spends nothing on ads.
+description: Use this when the founder needs the ads themselves, or the weekly read called for new ads. They say "Make my ads." It reads what already runs in their market in the Meta Ad Library, makes 2 images and 1 short vertical clip with Higgsfield, every word off squad/business.md, and saves the ads in squad/ads/<date>/. It builds nothing in Meta and spends nothing on ads.
 ---
 
 # execution-ads-make · Agent 11
 
-1 output: `squad/ads/<date>/`, the 3 ads and `ads.md` with their words, the market read and the
-claims check under each ad.
+1 output: `squad/ads/<date>/`, the 3 ads and `ads.md` with their words and the market read.
 
 **Your first message on a fresh run** (no `squad/ads/` folder on disk) carries this line, verbatim:
 This agent is a base. Once you have done it your way, tell your squad "update the agent to do it
 like this."
 
-Every word in an ad comes off `squad/business.md`. **Nothing is generated on Higgsfield before the
-cost line and a yes.**
+Every word in an ad comes off `squad/business.md`.
 
 `<date>` is always `YYYY-MM-DD`.
 
@@ -21,20 +19,18 @@ cost line and a yes.**
 
 | The founder says | What comes back |
 |---|---|
-| "Make my ads." | the market read, 3 ads in `squad/ads/<date>/`, each with its claims check in `ads.md` |
+| "Make my ads." | the market read, 3 ads in `squad/ads/<date>/`, their words in `ads.md` |
 
 "Make my ads." again picks up a stopped run: the newest `squad/ads/<date>/ads.md` with an ad that has
-no `Check:` line continues at the first thing missing. An ad with a `File:` line is never made again,
-and anything not yet made gets its own cost line and yes. When the newest folder is finished, a new
-run starts a new folder; a finished folder already dated today makes the new one `<date>-2`.
+no `File:` line continues at the first thing missing. An ad with a `File:` line is never made again.
+When the newest folder is finished, a new run starts a new folder; a finished folder already dated
+today makes the new one `<date>-2`.
 
 ## Read and write
 
-- Reads `squad/ads-money-card.md` (the account), `squad/business.md` (THE SENTENCE, WHO, THE
-  PROBLEM, THE PROMISE, PRICE, BUYER WORDS), the Meta Ad Library through the Meta Ads connector, and
-  Higgsfield through its command line.
-- Writes `squad/ads/<date>/`: `ad-1.<ext>`, `ad-2.<ext>`, `ad-3.mp4`, the clip's 3 check frames, and
-  `ads.md`. Nothing else.
+- Reads `squad/business.md` (THE SENTENCE, WHO, THE PROBLEM, THE PROMISE, PRICE, BUYER WORDS), the
+  Meta Ad Library through the Meta Ads connector, and Higgsfield through its command line.
+- Writes `squad/ads/<date>/`: `ad-1.<ext>`, `ad-2.<ext>`, `ad-3.mp4`, and `ads.md`. Nothing else.
 
 ## Before the run
 
@@ -44,11 +40,8 @@ run starts a new folder; a finished folder already dated today makes the new one
    "Run Agent 1 first: /execution-genesis-offer."
 3. THE SENTENCE sells credit, a job, housing, or a social issue, election or politics: 1 line,
    "Meta treats this as a special ad category. This agent does not build those." Stop.
-4. Read `squad/ads-money-card.md`. Missing: 1 line, "Run Agent 10 first: Set up my ads money." Stop.
-5. **The account read.** Call `ads_get_ad_accounts`. No Meta Ads tools loaded: print the connect
-   steps from `references/the-account.md` section 1 and stop. Read the card's account and print its
-   line only when it stops the run: not both enabled and queryable stops it, with Meta's reasons
-   exactly as written.
+4. **The connector.** No Meta Ads tools loaded: print the connect steps from
+   `references/the-account.md` section 1 and stop.
 
 ## "Make my ads."
 
@@ -79,37 +72,18 @@ run starts a new folder; a finished folder already dated today makes the new one
      headline is 1 sentence that stands on its own and never opens on So, And or But. The
      founder's 3 lines set the kind of shot, never a word or a claim.
    - Prompt rules: `references/the-account.md` section 3.
-6. **The cost, first.** Run `higgsfield generate cost` for each of the 3 and print 1 line: "3 ads:
-   N credits." Wait for yes. Anything else makes nothing.
-7. **Make them.** `higgsfield generate create <model> ... --wait` for each. Download each result
+6. **Make them.** `higgsfield generate create <model> ... --wait` for each. Download each result
    into `squad/ads/<date>/ad-1.<ext>`, `ad-2.<ext>`, `ad-3.mp4`, the extension off the link. Write
    the credits, the file path and the public result link under each ad. A create that errors with
    no job in `higgsfield generate list` took no credits: run it once more. A second error: print it
    as written and stop.
-8. **The claims check.** Open each image, and the clip's 3 frames (`references/the-numbers.md`
-   section 2, rule 5). Check every ad, its words and what it shows, against `squad/business.md`
-   (`references/the-numbers.md` section 2). Write `pass` or `fail` with the reason under each ad. A
-   fail gets its prompt fixed and 1 remake, with its own cost line and yes first. A remake that
-   fails too reads `dropped` with its reason and is never built (`references/the-numbers.md`
-   section 1).
-9. Print the 3 file paths, each ad's words and its check, then "Tell me what any line should say,
-   and I'll change it." Last line: "Next: Build my ads launch." Every ad dropped: 1 line instead,
-   "No ad passed the check. Type Make my ads. to make 3 new ones."
-
-A changed line is a changed ad: its check runs again before the last line prints.
-
-## A CSV the founder hands it
-
-"Read my claims check from <file>.csv", a CSV in the columns `ad,type,headline,make,credits,check,reason`:
-make nothing, spend nothing, and print 1 line per ad (pass, or fail on the first make with its
-reason and the remake's result), then the total: passed of made, remakes, credits. Write nothing.
-Last line: "Next: Build my ads launch."
+7. Print the 3 file paths, each ad's words and the credits used, then "Tell me what any line should
+   say, and I'll change it." Last line: "Next: Build my ads launch."
 
 ## Never
 
-- Generate on Higgsfield before the cost line and a yes.
 - Write `squad/business.md`, `squad/sales.md` or `squad/ads-money-card.md`.
-- Build anything in Meta. Agent 12 builds, and only the ads that read `pass`.
+- Build anything in Meta. Agent 12 builds.
 - Put a word, number or claim in an ad that is not on `squad/business.md`, or copy what the
   founder's 3 lines describe.
 - Say an ad running for months is making money. The Ad Library returns no spend and no results.
